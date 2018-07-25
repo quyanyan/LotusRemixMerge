@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://tempuri.org/AbstractTypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExtractResume">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filePath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExtractResumeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExtractResumeResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Append">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="buffer" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppendResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Verify">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="md5" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExtractResumeSoapIn">
+    <wsdl:part name="parameters" element="tns:ExtractResume" />
+  </wsdl:message>
+  <wsdl:message name="ExtractResumeSoapOut">
+    <wsdl:part name="parameters" element="tns:ExtractResumeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateFileSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateFile" />
+  </wsdl:message>
+  <wsdl:message name="CreateFileSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="AppendSoapIn">
+    <wsdl:part name="parameters" element="tns:Append" />
+  </wsdl:message>
+  <wsdl:message name="AppendSoapOut">
+    <wsdl:part name="parameters" element="tns:AppendResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifySoapIn">
+    <wsdl:part name="parameters" element="tns:Verify" />
+  </wsdl:message>
+  <wsdl:message name="VerifySoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn" />
+  <wsdl:message name="HelloWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExtractResumeHttpGetIn">
+    <wsdl:part name="filePath" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExtractResumeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CreateFileHttpGetIn">
+    <wsdl:part name="fileName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateFileHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="AppendHttpGetIn">
+    <wsdl:part name="fileName" type="s:string" />
+    <wsdl:part name="buffer" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="AppendHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyHttpGetIn">
+    <wsdl:part name="fileName" type="s:string" />
+    <wsdl:part name="md5" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpPostIn" />
+  <wsdl:message name="HelloWorldHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExtractResumeHttpPostIn">
+    <wsdl:part name="filePath" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExtractResumeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CreateFileHttpPostIn">
+    <wsdl:part name="fileName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateFileHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="AppendHttpPostIn">
+    <wsdl:part name="fileName" type="s:string" />
+    <wsdl:part name="buffer" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="AppendHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyHttpPostIn">
+    <wsdl:part name="fileName" type="s:string" />
+    <wsdl:part name="md5" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="AnalyzeResumeSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtractResume">
+      <wsdl:input message="tns:ExtractResumeSoapIn" />
+      <wsdl:output message="tns:ExtractResumeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFile">
+      <wsdl:input message="tns:CreateFileSoapIn" />
+      <wsdl:output message="tns:CreateFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Append">
+      <wsdl:input message="tns:AppendSoapIn" />
+      <wsdl:output message="tns:AppendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <wsdl:input message="tns:VerifySoapIn" />
+      <wsdl:output message="tns:VerifySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnalyzeResumeHttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtractResume">
+      <wsdl:input message="tns:ExtractResumeHttpGetIn" />
+      <wsdl:output message="tns:ExtractResumeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFile">
+      <wsdl:input message="tns:CreateFileHttpGetIn" />
+      <wsdl:output message="tns:CreateFileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Append">
+      <wsdl:input message="tns:AppendHttpGetIn" />
+      <wsdl:output message="tns:AppendHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <wsdl:input message="tns:VerifyHttpGetIn" />
+      <wsdl:output message="tns:VerifyHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnalyzeResumeHttpPost">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpPostIn" />
+      <wsdl:output message="tns:HelloWorldHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtractResume">
+      <wsdl:input message="tns:ExtractResumeHttpPostIn" />
+      <wsdl:output message="tns:ExtractResumeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFile">
+      <wsdl:input message="tns:CreateFileHttpPostIn" />
+      <wsdl:output message="tns:CreateFileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Append">
+      <wsdl:input message="tns:AppendHttpPostIn" />
+      <wsdl:output message="tns:AppendHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <wsdl:input message="tns:VerifyHttpPostIn" />
+      <wsdl:output message="tns:VerifyHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AnalyzeResumeSoap" type="tns:AnalyzeResumeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractResume">
+      <soap:operation soapAction="http://tempuri.org/ExtractResume" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFile">
+      <soap:operation soapAction="http://tempuri.org/CreateFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Append">
+      <soap:operation soapAction="http://tempuri.org/Append" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <soap:operation soapAction="http://tempuri.org/Verify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnalyzeResumeSoap12" type="tns:AnalyzeResumeSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractResume">
+      <soap12:operation soapAction="http://tempuri.org/ExtractResume" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFile">
+      <soap12:operation soapAction="http://tempuri.org/CreateFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Append">
+      <soap12:operation soapAction="http://tempuri.org/Append" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <soap12:operation soapAction="http://tempuri.org/Verify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnalyzeResumeHttpGet" type="tns:AnalyzeResumeHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractResume">
+      <http:operation location="/ExtractResume" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFile">
+      <http:operation location="/CreateFile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Append">
+      <http:operation location="/Append" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <http:operation location="/Verify" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnalyzeResumeHttpPost" type="tns:AnalyzeResumeHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractResume">
+      <http:operation location="/ExtractResume" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFile">
+      <http:operation location="/CreateFile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Append">
+      <http:operation location="/Append" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <http:operation location="/Verify" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnalyzeResume">
+    <wsdl:port name="AnalyzeResumeSoap" binding="tns:AnalyzeResumeSoap">
+      <soap:address location="http://192.168.88.122:8081/AnalyzeResume.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnalyzeResumeSoap12" binding="tns:AnalyzeResumeSoap12">
+      <soap12:address location="http://192.168.88.122:8081/AnalyzeResume.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnalyzeResumeHttpGet" binding="tns:AnalyzeResumeHttpGet">
+      <http:address location="http://192.168.88.122:8081/AnalyzeResume.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnalyzeResumeHttpPost" binding="tns:AnalyzeResumeHttpPost">
+      <http:address location="http://192.168.88.122:8081/AnalyzeResume.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

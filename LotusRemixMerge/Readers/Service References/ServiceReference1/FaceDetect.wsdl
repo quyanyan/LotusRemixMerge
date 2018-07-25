@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateDir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="location" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDirResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateDirSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDir" />
+  </wsdl:message>
+  <wsdl:message name="CreateDirSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDirResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDirHttpGetIn">
+    <wsdl:part name="location" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDirHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDirHttpPostIn">
+    <wsdl:part name="location" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDirHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="FaceDetectSoap">
+    <wsdl:operation name="CreateDir">
+      <wsdl:input message="tns:CreateDirSoapIn" />
+      <wsdl:output message="tns:CreateDirSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FaceDetectHttpGet">
+    <wsdl:operation name="CreateDir">
+      <wsdl:input message="tns:CreateDirHttpGetIn" />
+      <wsdl:output message="tns:CreateDirHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FaceDetectHttpPost">
+    <wsdl:operation name="CreateDir">
+      <wsdl:input message="tns:CreateDirHttpPostIn" />
+      <wsdl:output message="tns:CreateDirHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FaceDetectSoap" type="tns:FaceDetectSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDir">
+      <soap:operation soapAction="http://tempuri.org/CreateDir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FaceDetectSoap12" type="tns:FaceDetectSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDir">
+      <soap12:operation soapAction="http://tempuri.org/CreateDir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FaceDetectHttpGet" type="tns:FaceDetectHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CreateDir">
+      <http:operation location="/CreateDir" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FaceDetectHttpPost" type="tns:FaceDetectHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateDir">
+      <http:operation location="/CreateDir" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FaceDetect">
+    <wsdl:port name="FaceDetectSoap" binding="tns:FaceDetectSoap">
+      <soap:address location="http://192.168.88.103:8086/FaceDetect.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FaceDetectSoap12" binding="tns:FaceDetectSoap12">
+      <soap12:address location="http://192.168.88.103:8086/FaceDetect.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FaceDetectHttpGet" binding="tns:FaceDetectHttpGet">
+      <http:address location="http://192.168.88.103:8086/FaceDetect.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FaceDetectHttpPost" binding="tns:FaceDetectHttpPost">
+      <http:address location="http://192.168.88.103:8086/FaceDetect.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

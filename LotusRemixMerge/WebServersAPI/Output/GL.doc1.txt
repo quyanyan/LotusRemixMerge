@@ -1,0 +1,18 @@
+{
+  "first-name": null,
+  "last-name": null,
+  "gender": null,
+  "email-address": null,
+  "phone-numbers": null,
+  "languages": null,
+  "summary-description": null,
+  "age": null,
+  "skills": [],
+  "location": null,
+  "positions": [],
+  "projects": [],
+  "social-profiles": [],
+  "educations": [],
+  "courses": [],
+  "awards": []
+}
